@@ -1,0 +1,13 @@
+# Статуи с полным набором свойств: высота, дата создания, страна, высота над уровнем моря, материал
+# Statues with a full set of properties: height, creation date, country, altitude, and material
+SELECT DISTINCT ?statue ?statueLabel ?height ?creationDate ?countryLabel ?elevation ?materialLabel
+WHERE {
+  ?statue wdt:P31 wd:Q4989906.  # Экземпляр: статуя
+  ?statue wdt:P2048 ?height.      # Высота (обязательно)
+  ?statue wdt:P571 ?creationDate. # Дата создания (обязательно)
+  ?statue wdt:P17 ?country.      # Страна (обязательно)
+  ?statue wdt:P2044 ?elevation.   # Высота над уровнем моря (обязательно)
+  ?statue wdt:P186 ?material.     # Материал (обязательно)
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],ru,en". }
+}
+LIMIT 100
